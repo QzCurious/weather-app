@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_TITLE}</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Component {...pageProps} />
     </>
