@@ -63,8 +63,10 @@ interface Wind {
 /**
  * @see https://openweathermap.org/current
  */
-export function currentWeather({ city, country }: CurrentWeatherRequest) {
-  return request.get<CurrentWeatherResponse>("/weather", {
-    params: { q: `${city},${country}` },
+export async function currentWeather({ city, country }: CurrentWeatherRequest) {
+  const res = await request.get<CurrentWeatherResponse>("/weather", {
+    params: { q: `${city},${country}`, units: "metric" },
   });
+
+  return res.data;
 }
