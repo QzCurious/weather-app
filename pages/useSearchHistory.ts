@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 
 export interface ISearchHistory {
   id: number;
@@ -30,7 +30,7 @@ const useSearchHistory = () => {
   const [data, setData] = useState<ISearchHistory[]>([]);
 
   // load history from localStorage
-  useEffect(() => {
+  useLayoutEffect(() => {
     const h = fromLocalStorage();
     h && setData(h);
   }, []);
