@@ -64,7 +64,7 @@ const Home: NextPage = () => {
           </Stack>
         </Stack>
       </form>
-      {query.isSuccess && (
+      {query.data && (
         <Box sx={{ my: 2 }}>
           <WeatherCard
             city={query.data.name}
