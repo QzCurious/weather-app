@@ -1,6 +1,6 @@
-import { Stack } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
+import Image from "next/image";
 
 interface Temperature {
   unit: string;
@@ -16,34 +16,41 @@ interface Props {
   temp: Temperature;
   humidity: number;
   time: Date;
+  icon: string;
 }
 
-const WeatherCard = ({ city, country, weather, desc, temp, humidity, time }: Props) => {
+const WeatherCard = ({ city, country, weather, desc, temp, humidity, time, icon }: Props) => {
   return (
-    <section>
+    <Box sx={{ p: 2, width: "22rem", backgroundColor: "#cde7e1", borderRadius: "1rem" }} component="section">
       <Stack direction="column">
-        <p>
-          {city}, {country}
-        </p>
-        <p>{weather}</p>
-        <Box sx={{ display: "grid", gridTemplateColumns: "max-content 1fr", columnGap: "1.4em" }}>
-          <span>Description:</span>
-          <span>{desc}</span>
+        <Stack direction="row">
+          <div>
+            <Typography variant="caption">
+              {city}, {country}
+            </Typography>
+            <Typography variant="h4">{weather}</Typography>
+          </div>
+          <Image src={icon} alt={desc} width={80} height={80} />
+        </Stack>
 
-          <span>Temperature:</span>
-          <span>
+        <Stack sx={{ display: "grid", gridTemplateColumns: "max-content 1fr", columnGap: "1.4em" }}>
+          <Typography variant="body2">Description:</Typography>
+          <Typography variant="body2">{desc}</Typography>
+
+          <Typography variant="body2">Temperature:</Typography>
+          <Typography variant="body2">
             {temp?.tempMin}~{temp?.tempMax}
             {temp?.unit}
-          </span>
+          </Typography>
 
-          <span>Humidity:</span>
-          <span>{humidity}%</span>
+          <Typography variant="body2">Humidity:</Typography>
+          <Typography variant="body2">{humidity}%</Typography>
 
-          <span>Time:</span>
-          <span>{format(time, "yyyy-MM-dd hh:mm aa")}</span>
-        </Box>
+          <Typography variant="body2">Time:</Typography>
+          <Typography variant="body2">{format(time, "yyyy-MM-dd hh:mm aa")}</Typography>
+        </Stack>
       </Stack>
-    </section>
+    </Box>
   );
 };
 

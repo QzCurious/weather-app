@@ -1,6 +1,6 @@
 import React from "react";
 import { ListItem, IconButton, ListItemText, Box, Typography, List } from "@mui/material";
-import { format, fromUnixTime } from "date-fns";
+import { format } from "date-fns";
 import { ISearchHistory } from "./useSearchHistory";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -34,8 +34,10 @@ export interface SearchHistoryProps {
 const SearchHistory = ({ data, onDelete }: SearchHistoryProps) => {
   return (
     <section>
-      <Typography variant="h2">Search History</Typography>
-      <List>
+      <Typography variant="h6" component="h2">
+        Search History
+      </Typography>
+      <List disablePadding>
         {data.map((h) => (
           <HistoryItem key={h.id} data={h} onDelete={onDelete} />
         ))}
